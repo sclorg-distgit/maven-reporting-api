@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        3.0
-Release:        5.10%{?dist}
+Release:        5.11%{?dist}
 # Maven-shared defines maven-reporting-api version as 3.0
 Epoch:          1
 Summary:        API to manage report generation
@@ -19,8 +19,8 @@ Source1:        http://www.apache.org/licenses/LICENSE-2.0.txt
 BuildArch:      noarch
 
 BuildRequires:  %{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-mvn(org.apache.maven.shared:maven-shared-components:pom:)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-sink-api)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.shared:maven-shared-components:pom:)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-sink-api)
 
 
 %description
@@ -39,13 +39,13 @@ API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 cp %{SOURCE1} LICENSE.txt
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 # Previous package provides groupIds org.apache.maven.shared and org.apache.maven.reporting
 %mvn_alias : org.apache.maven.shared:maven-reporting-api
@@ -53,7 +53,7 @@ set -e -x
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -68,6 +68,9 @@ set -e -x
 
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1:3.0-5.11
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1:3.0-5.10
 - maven33 rebuild
 
