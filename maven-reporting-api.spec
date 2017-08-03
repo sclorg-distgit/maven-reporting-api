@@ -3,7 +3,7 @@
 
 Name:           %{?scl_prefix}maven-reporting-api
 Version:        3.0
-Release:        11.1%{?dist}
+Release:        11.2%{?dist}
 # Maven-shared defines maven-reporting-api version as 3.0
 Epoch:          1
 Summary:        API to manage report generation
@@ -57,6 +57,9 @@ cp %{SOURCE1} LICENSE.txt
 %doc LICENSE.txt
 
 %changelog
+* Thu Jun 22 2017 Michael Simacek <msimacek@redhat.com> - 1:3.0-11.2
+- Mass rebuild 2017-06-22
+
 * Wed Jun 21 2017 Java Maintainers <java-maint@redhat.com> - 1:3.0-11.1
 - Automated package import and SCL-ization
 
